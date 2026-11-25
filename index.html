@@ -7,17 +7,86 @@
 :root{font:16px/1.6 "Avenir Next",system-ui,sans-serif;color:#263631;background:#f4f4ed;--ink:#18342d;--line:#cbd8d1;--tint:#e9f1e9;--panel:#fffefa;--accent:#34604f}
 *{box-sizing:border-box}body{margin:0}.mast{background:var(--ink);color:#fff;padding:15px max(18px,calc((100% - 940px)/2));font-weight:650;white-space:nowrap}.mast a{color:inherit;text-decoration:none}.mast a:hover{text-decoration:underline}
 main{max-width:980px;margin:auto;padding:28px 20px 48px}h1,h2,h3,p{margin:0}h1,h2,h3{color:var(--ink);line-height:1.23}h1{font-size:clamp(1.75rem,5vw,2.85rem);letter-spacing:-.035em}h2{font-size:1.2rem}h3{font-size:1.05rem}.intro{margin:11px 0 23px;color:#475c54}.reference{font-size:.9rem;font-weight:700;color:var(--accent);margin-bottom:7px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:clamp(15px,3.5vw,26px);margin-top:19px}.group ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));list-style:none;gap:8px;margin:14px 0 0;padding:0}.group a{color:var(--ink);display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;text-decoration:none;height:100%}.group a:hover,.group a:focus-visible{background:var(--tint)}.group small{display:block;color:#486155;margin-bottom:3px}.group strong{display:block}
-dl{margin:14px 0 0;padding:0}.entry{display:grid;grid-template-columns:minmax(32%,1fr) minmax(35%,1fr);gap:9px;align-items:start;padding:7px 0;border-top:1px solid #dbe4da}.entry dt{font-weight:650}.entry dd{margin:0;text-align:right}.receipt{margin-top:14px;padding:14px;background:#f3f6f0;border-radius:10px;border:1px solid #d4e1d7}.case p{margin-top:9px}.case .auftrag{margin-top:12px;font-weight:750}
+dl{margin:14px 0 0;padding:0}.entry{display:grid;grid-template-columns:minmax(32%,1fr) minmax(35%,1fr);gap:9px;align-items:start;padding:7px 0;border-top:1px solid #dbe4da}.entry dt{font-weight:650}.entry dd{margin:0;text-align:right}.case p{margin-top:9px}.case .auftrag{margin-top:12px;font-weight:750}
 details{margin-top:9px;border:1px solid var(--line);border-radius:10px;background:#fcfdf9}summary{padding:11px 13px;cursor:pointer;color:var(--ink);font-weight:750}summary:focus-visible,a:focus-visible{outline:3px solid #246b54;outline-offset:3px}details[open] summary{border-bottom:1px solid var(--line);background:var(--tint);border-radius:9px 9px 0 0}.disclosure{padding:12px 14px}.solution{border-color:#98b5a8}.solution summary{background:#deece2;border-radius:9px}.solution .explain+.explain{margin-top:6px}.solution section{margin-top:15px}.booking{margin-top:8px;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:center}.booking dl{margin:0;border-radius:9px;background:#eff4ed;border:1px solid #d4e1d6;padding:8px}.booking dl:last-child{background:#f6eee8;border-color:#e5d6cb}.booking .entry{font-size:.93rem}.booking .entry:first-of-type{border-top:0}.booking dt,.booking dd{overflow-wrap:anywhere}.booking dd{white-space:nowrap}.booking-caption{font-weight:750;margin-bottom:3px}.an{font-weight:700}.solutions-note{background:#f7efd8;color:#504424;border-radius:9px;padding:10px;margin-top:15px}.back{display:inline-block;color:var(--ink);padding:13px 0 6px}.context-note{margin-top:10px;font-size:.86rem;color:#53685d}
-.receipt-image{display:block;width:fit-content;margin:12px auto 0;text-align:center;color:var(--accent)}.receipt-image img{display:block;max-width:100%;height:auto;margin:auto auto 6px;border-radius:4px}
+.receipt {
+  --paper-accent: #315749;
+  --paper-tint: #eff5f0;
+  max-width: 690px;
+  margin: 16px auto 0;
+  padding: clamp(12px, 4vw, 32px);
+  color: #22312c;
+  background: #fff;
+  border: 1px solid #dae1dc;
+  border-top: 5px solid var(--paper-accent);
+  border-radius: 5px;
+  box-shadow: 0 4px 14px #20322b0a;
+  font-size: .94rem;
+  font-variant-numeric: tabular-nums;
+}
+.receipt--bon, .receipt--terminal { max-width: 480px; }
+.receipt--bon { --paper-accent: #45544d; --paper-tint: #f1f4f2; }
+.receipt--terminal { --paper-accent: #25556b; --paper-tint: #edf5f8; }
+.receipt--invoice { --paper-accent: #365338; --paper-tint: #eff5ec; }
+.receipt--navigation { --paper-accent: #3c4974; --paper-tint: #eef0f8; }
+.receipt--quittung { --paper-accent: #825030; --paper-tint: #f9efe7; }
+.receipt h3 { margin: 4px 0; color: var(--paper-accent); font-size: clamp(1.18rem, 3.1vw, 1.65rem); }
+.receipt .receipt-kind {
+  margin: 0;
+  color: var(--paper-accent);
+  font-size: .78rem;
+  font-weight: 750;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.receipt .receipt-address, .receipt .receipt-footer { margin-top: 4px; color: #47564e; font-size: .85rem; }
+.receipt-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  column-gap: 16px;
+  row-gap: 2px;
+  margin: 16px 0;
+  padding: 8px 10px;
+  background: var(--paper-tint);
+  font-size: .82rem;
+}
+.receipt-recipient { margin: 16px 0; font-style: normal; }
+.receipt-items { width: 100%; border-collapse: collapse; font-size: .9rem; }
+.receipt-items th, .receipt-items td { text-align: right; padding: 7px 5px; border-bottom: 1px solid #e2e8e4; }
+.receipt-items th { color: var(--paper-accent); font-size: .79rem; font-weight: 750; }
+.receipt-items :is(th, td):first-child { text-align: left; padding-left: 0; }
+.receipt-items td:not(:first-child) { white-space: nowrap; }
+.receipt-items small { display: block; margin-top: 2px; color: #47564e; }
+.receipt-totals { margin: 12px 0 0 auto; max-width: 360px; }
+.receipt .receipt-totals .entry:first-child { border: 0; }
+.receipt .receipt-totals .entry:last-child {
+  background: var(--paper-tint);
+  color: var(--paper-accent);
+  border: 0;
+  border-radius: 3px;
+  padding-inline: 8px;
+  font-weight: 780;
+}
+.receipt .entry { grid-template-columns: minmax(0, 1fr) auto; }
+.receipt .entry dd { white-space: nowrap; }
+.receipt .receipt-payment { margin: 15px 0 0; font-weight: 750; color: var(--paper-accent); }
+.receipt .receipt-footer { border-top: 1px solid #e2e8e4; margin-top: 15px; padding-top: 8px; }
+@media (max-width: 420px) {
+  .receipt-items { font-size: .8rem; }
+  .receipt-items th { font-size: .72rem; line-height: 1.2; }
+  .receipt-items th, .receipt-items td { padding-inline: 3px; }
+}
 @media(max-width:520px){main{padding-inline:12px}.booking{gap:5px}.booking .entry{display:block}.booking dd{text-align:left}.entry{gap:4px}}
 </style>
 <header class="mast"><a href="./">BwR · Aufgaben mit Selbstkontrolle</a></header>
 <main id="app"><noscript>Aktiviere JavaScript, um die Aufgaben zu öffnen.</noscript></main>
 <script id="buchdaten" type="application/json">[{"id":"18-1","group":18,"no":1,"page":169,"title":"Gabelstapler und Anlieferung","desc":"Zielkauf mit Rabatt und separat bar bezahlter Fracht.","sections":[["1.1","Der Gabelstapler wird auf Ziel gekauft. Der Nettopreis von 9.000,00 € vermindert sich um 5 % Rabatt."],["1.2","Der Spediteur erhält für die Anlieferung 380,80 € brutto in bar."]],"hints":["Trenne den Kauf und die Anlieferung in zwei Buchungssätze.","Ziehe den Rabatt vor der Berechnung der Vorsteuer ab. Rechne die Fracht vom Brutto- in den Nettobetrag um.","Erfasse den Stapler und die Anlieferung auf demselben Anlagekonto. Prüfe für jeden Vorgang, ob eine Verbindlichkeit entsteht oder Bargeld abgeht."],"way":["Rabatt: 9.000,00 € × 5 % = 450,00 €. Nettokaufpreis: 8.550,00 €. Vorsteuer: 1.624,50 €.","Anlieferung: 380,80 € ÷ 1,19 = 320,00 € netto. Vorsteuer: 60,80 €."],"bookings":[["1.1 · Zielkauf",[["0840 FP",855000],["2600 VORST",162450]],[["4400 VE",1017450]]],["1.2 · Anlieferung",[["0840 FP",32000],["2600 VORST",6080]],[["2880 KA",38080]]]],"note":null,"receipts":null},{"id":"18-2","group":18,"no":2,"page":169,"title":"Zwei Büroschreibtische","desc":"Nettostückpreis bestimmen und die Eingangsrechnung buchen.","sections":[["","Zwei Büroschreibtische kosten auf Rechnung zusammen 2.856,00 € brutto."]],"hints":["Ermittle zunächst den Nettobetrag für beide Schreibtische.","Teile den Nettogesamtbetrag durch zwei und vergleiche den Stückpreis mit der GWG-Grenze.","Wähle das Konto für Büromöbel. Der Bruttobetrag der Rechnung ist noch offen."],"way":["2.856,00 € ÷ 1,19 = 2.400,00 € netto. Je Schreibtisch sind das 1.200,00 €. Vorsteuer: 456,00 €."],"bookings":[["Eingangsrechnung",[["0870 BGA",240000],["2600 VORST",45600]],[["4400 VE",285600]]]],"note":null,"receipts":null},{"id":"18-3","group":18,"no":3,"page":169,"title":"Computeranlage, Installation und Mäuse","desc":"Drei Vorgänge mit Eingangsrechnungen und einem Barkauf.","sections":[["3.1","Die Computeranlage wird für 8.000,00 € netto auf Ziel gekauft."],["3.2","Für ihre Installation geht eine Rechnung über 833,00 € brutto ein."],["3.3","Für die Arbeitsplätze werden acht Computermäuse zu je 12,50 € netto bar gekauft."]],"hints":["Bilde je einen Buchungssatz für Kauf, Installation und Mäuse.","Die Installation gehört zu den Anschaffungskosten der Computeranlage. Die Mäuse sind Zubehör der Computerarbeitsplätze.","Rechne die Installation aus Brutto zurück und multipliziere den Preis einer Maus mit acht. Achte beim Gegenkonto auf die Barzahlung in 3.3."],"way":["Computeranlage: 8.000,00 € netto + 1.520,00 € Vorsteuer.","Installation: 833,00 € ÷ 1,19 = 700,00 € netto. Vorsteuer: 133,00 €.","Mäuse: 8 × 12,50 € = 100,00 € netto. Vorsteuer: 19,00 €."],"bookings":[["3.1 · Computeranlage",[["0860 BM",800000],["2600 VORST",152000]],[["4400 VE",952000]]],["3.2 · Installation",[["0860 BM",70000],["2600 VORST",13300]],[["4400 VE",83300]]],["3.3 · Computermäuse",[["0860 BM",10000],["2600 VORST",1900]],[["2880 KA",11900]]]],"note":"Bei 3.3 nennt die Aufgabe eine Barzahlung. Deshalb steht im Haben 2880 KA. Die gedruckte Lösung verwendet 4400 VE.","receipts":null},{"id":"18-4","group":18,"no":4,"page":170,"title":"Grundstück und Lagerhalle","desc":"Kaufvertrag, Notarrechnung und Grunderwerbsteuer buchen.","sections":[["4.1","Das Unternehmen kauft notariell ein Grundstück für 300.000,00 € mit einer Lagerhalle für 200.000,00 €. Das Zahlungsziel beträgt 20 Tage."],["4.2","Für den Immobilienkauf geht eine Notarrechnung über 2.618,00 € brutto ein."],["4.3","Der Grunderwerbsteuerbescheid lautet über 17.500,00 €."]],"hints":["Ordne Grundstück und Lagerhalle getrennten Anlagekonten zu.","Ermittle den Anteil jedes Anlageguts am Gesamtkaufpreis. Nutze diese Anteile für beide Nebenkosten.","Bei der Notarrechnung wird der Nettobetrag verteilt. Die Grunderwerbsteuer selbst enthält keine Vorsteuer. Prüfe, wer die Forderung stellt."],"way":["Gesamtkaufpreis: 500.000,00 €. Grundstück 60 %, Lagerhalle 40 %.","Notariat: 2.618,00 € ÷ 1,19 = 2.200,00 € netto. Aufteilung: 1.320,00 € und 880,00 €. Vorsteuer: 418,00 €.","Grunderwerbsteuer: 17.500,00 € × 60 % = 10.500,00 € und × 40 % = 7.000,00 €."],"bookings":[["4.1 · Kaufvertrag",[["0500 GR",30000000],["0530 BVG",20000000]],[["4400 VE",50000000]]],["4.2 · Notarrechnung",[["0500 GR",132000],["0530 BVG",88000],["2600 VORST",41800]],[["4400 VE",261800]]],["4.3 · Steuerbescheid",[["0500 GR",1050000],["0530 BVG",700000]],[["4830 VFA",1750000]]]],"note":"Bei 4.3 steht in der Buchlösung 4400 VE. Nach dem Kontenplan aus dem Unterricht wird der Steuerbescheid über 4830 VFA gebucht.","receipts":null},{"id":"18-5","group":18,"no":5,"page":170,"title":"Lkw-Zulassungsgebühren","desc":"Zulassungsgebühren per Girocard buchen.","sections":[["","Für die Zulassung eines neuen Lkw werden 320,00 € per Girocard bezahlt."]],"hints":["Überlege, ob die Zahlung mit der Anschaffung des Lkw zusammenhängt.","Behandle die Zulassungsgebühren als Anschaffungsnebenkosten ohne Vorsteuer.","Eine Girocard-Zahlung geht vom Bankkonto ab. Welches Anlagekonto nimmt die Gebühren auf?"],"way":["Die 320,00 € erhöhen die Anschaffungskosten des Fuhrparks. Die Zahlung mindert das Bankguthaben."],"bookings":[["Zulassungsgebühren",[["0840 FP",32000]],[["2800 BK",32000]]]],"note":null,"receipts":null},{"id":"18-6","group":18,"no":6,"page":171,"title":"Schleifmaschine und Montage","desc":"Rabatt, Fracht und bar bezahlte Montage erfassen.","sections":[["6.1","Schleifmaschine auf Ziel: 15.000,00 € netto, 10 % Rabatt und 800,00 € netto für die in Rechnung gestellte Fracht."],["6.2","Die Montage wird separat bar bezahlt. Sie kostet 714,00 € brutto."]],"hints":["Trenne Eingangsrechnung und Barzahlung.","Ziehe den Rabatt vom Maschinenpreis ab und addiere dann die Nettofracht.","Rechne die Montage aus Brutto in Netto um. Fracht und Montage erhöhen die Anschaffungskosten der Maschine."],"way":["Rabatt: 1.500,00 €. Anschaffungskosten der Rechnung: 15.000,00 € − 1.500,00 € + 800,00 € = 14.300,00 €. Vorsteuer: 2.717,00 €.","Montage: 714,00 € ÷ 1,19 = 600,00 € netto. Vorsteuer: 114,00 €."],"bookings":[["6.1 · Eingangsrechnung",[["0700 MA",1430000],["2600 VORST",271700]],[["4400 VE",1701700]]],["6.2 · Montage",[["0700 MA",60000],["2600 VORST",11400]],[["2880 KA",71400]]]],"note":null,"receipts":null},{"id":"18-7","group":18,"no":7,"page":171,"title":"Grundbuchgebühren","desc":"Gemeinsame Anschaffungsnebenkosten aufteilen.","sections":[["","Für den Grundbucheintrag werden 300,00 € in Rechnung gestellt. Das Grundstück hat einen Kaufpreis von 100.000,00 €, die Werkhalle mit Meisterbüro einen von 50.000,00 €."]],"hints":["Die Kosten betreffen zwei Anlagegüter.","Ermittle das Verhältnis der beiden Kaufpreise.","Verteile die 300,00 € entsprechend dem Verhältnis 2 zu 1. Die Gebühren enthalten keine Vorsteuer."],"way":["Gesamtkaufpreis: 150.000,00 €. Grundstück: 300,00 € × 100.000 ÷ 150.000 = 200,00 €. Werkhalle: 100,00 €."],"bookings":[["Grundbuchkostenrechnung",[["0500 GR",20000],["0530 BVG",10000]],[["4400 VE",30000]]]],"note":null,"receipts":null},{"id":"18-8","group":18,"no":8,"page":171,"title":"Lackiermaschine und Überweisung","desc":"Eingangsrechnung mit Rabatt und spätere Zahlung.","sections":[["8.1","Für eine Lackiermaschine geht eine Rechnung über 18.000,00 € netto abzüglich 8 % Rabatt ein."],["8.2","Der Rechnungsbetrag wird anschließend vom Geschäftsbankkonto an den Lieferer überwiesen."]],"hints":["Trenne die Entstehung und die Begleichung der Verbindlichkeit.","Ziehe den Rabatt vom Nettopreis ab. Berechne daraus Vorsteuer und Bruttorechnungsbetrag.","Bei der Überweisung nimmst du die Verbindlichkeit um den Bruttobetrag zurück und minderst das Bankguthaben."],"way":["Rabatt: 18.000,00 € × 8 % = 1.440,00 €. Netto: 16.560,00 €. Vorsteuer: 3.146,40 €. Rechnungsbetrag: 19.706,40 €."],"bookings":[["8.1 · Eingangsrechnung",[["0700 MA",1656000],["2600 VORST",314640]],[["4400 VE",1970640]]],["8.2 · Überweisung",[["4400 VE",1970640]],[["2800 BK",1970640]]]],"note":null,"receipts":null},{"id":"18-9","group":18,"no":9,"page":172,"title":"Lkw mit Sonderrabatt","desc":"Listenpreis, Rabatt, Beschriftung und Überführung berücksichtigen.","sections":[["","Die Rechnung für den neuen 40-t-Lkw weist 90.000,00 € Listenpreis netto, 5 % Sonderrabatt auf den Listenpreis, 1.150,00 € für den Werbeschriftzug und 800,00 € für die Überführung aus. Beide Zusatzpositionen sind Nettobeträge."]],"hints":["Berechne den Rabatt nur auf den Listenpreis.","Addiere die Zusatzpositionen erst nach dem Rabattabzug.","Die Summe der Nettoanschaffungskosten kommt auf das Fuhrparkkonto. Berechne darauf die Vorsteuer."],"way":["Rabatt: 4.500,00 €. Anschaffungskosten nach Buchansatz: 90.000,00 € − 4.500,00 € + 1.150,00 € + 800,00 € = 87.450,00 €. Vorsteuer: 16.615,50 €."],"bookings":[["Eingangsrechnung",[["0840 FP",8745000],["2600 VORST",1661550]],[["4400 VE",10406550]]]],"note":null,"receipts":null},{"id":"19-1","group":19,"no":1,"page":172,"title":"Kopierpapier und Regalsystem","desc":"Kassenbeleg mit Büromaterial und einem GWG.","sections":[],"hints":["Unterscheide Verbrauchsmaterial und einen selbstständig nutzbaren Gegenstand.","Ordne das Regalsystem anhand von 390,00 € netto ein. Addiere die Vorsteuer aus beiden Positionen.","Buche den bezahlten Gesamtbetrag. Das gegebene Bargeld und das Rückgeld ergeben zusammen keinen zusätzlichen Aufwand."],"way":["Papier: 15,00 € netto. Regal: 390,00 € netto. Vorsteuer: 2,85 € + 74,10 € = 76,95 €."],"bookings":[["Barzahlung",[["6800 BMK",1500],["0890 GWG",39000],["2600 VORST",7695]],[["2880 KA",48195]]]],"note":null,"receipts":[["Kassenbon · Bürobedarf",[["Kopierpapier","15,00 € netto · 2,85 € USt · 17,85 € brutto"],["Regalsystem","390,00 € netto · 74,10 € USt · 464,10 € brutto"],["Bonbetrag","481,95 €"],["Bar gegeben / Rückgeld","500,00 € / 18,05 €"]]]]},{"id":"19-2","group":19,"no":2,"page":173,"title":"Zwei Tablet-PCs","desc":"Kartenzahlung mit Prüfung der Anschaffungskosten je Tablet.","sections":[],"hints":["Für die Einordnung zählt der Nettobetrag je Tablet.","Teile 2.400,00 € netto durch die Anzahl der Tablets.","Bei Kartenzahlung geht der Bruttobetrag vom Bankkonto ab."],"way":["2.400,00 € ÷ 2 = 1.200,00 € netto je Tablet. Damit erfolgt nach dem Buchkontenplan die Buchung auf 0860 BM."],"bookings":[["Kartenzahlung",[["0860 BM",240000],["2600 VORST",45600]],[["2800 BK",285600]]]],"note":null,"receipts":[["Kartenbeleg · Computerfachhandel",[["2 Tablet-PCs","je 1.428,00 € brutto"],["Nettosumme","2.400,00 €"],["Umsatzsteuer (19 %)","456,00 €"],["Per Girocard bezahlt","2.856,00 €"]]]]},{"id":"19-3","group":19,"no":3,"page":173,"title":"Beamer, Konferenztisch und Flipchartständer","desc":"Eine Rechnung mit drei unterschiedlich einzuordnenden Positionen.","sections":[],"hints":["Beurteile jeden Gegenstand einzeln anhand seines Nettopreises.","Prüfe die Bereiche bis 250,00 €, über 250,00 € bis 800,00 € und über 800,00 €.","Die Vorsteuer kann als Gesamtbetrag gebucht werden. Die noch offene Rechnung steht im Haben."],"way":["Beamer 1.675,00 € → Büromaschinen. Tisch 750,00 € → GWG. Flipchartständer 190,00 € → Kleingüter. Vorsteuer gesamt: 496,85 €."],"bookings":[["Eingangsrechnung",[["0860 BM",167500],["0890 GWG",75000],["6800 BMK",19000],["2600 VORST",49685]],[["4400 VE",311185]]]],"note":null,"receipts":[["Eingangsrechnung · Büromarkt",[["1 Beamer","1.675,00 € netto"],["1 Konferenztisch","750,00 € netto"],["1 Flipchartständer","190,00 € netto"],["Warenwert netto","2.615,00 €"],["Umsatzsteuer (19 %)","496,85 €"],["Rechnungsbetrag","3.111,85 €"]]]]},{"id":"19-4","group":19,"no":4,"page":174,"title":"Navigationsgeräte mit Rabatt","desc":"Einzelpreise nach Rabatt ermitteln und Konten zuordnen.","sections":[],"hints":["Ermittle die Nettoanschaffungskosten je Gerät nach dem Rabatt.","Multipliziere beide Einzelpreise mit 0,90. Prüfe die Einordnung für jedes Modell separat.","Multipliziere den verminderten Preis des Mini-Modells mit drei. Gleiche die Nettosumme mit dem Beleg ab."],"way":["Deluxe: 290,00 € × 0,90 = 261,00 € je Gerät. Mini: 260,00 € × 0,90 = 234,00 € je Gerät. Vier Geräte zusammen: 261,00 € + 702,00 € = 963,00 € netto."],"bookings":[["Eingangsrechnung",[["0890 GWG",26100],["6800 BMK",70200],["2600 VORST",18297]],[["4400 VE",114597]]]],"note":null,"receipts":[["Eingangsrechnung · Navigationsgeräte",[["1 tragbares Navigationsgerät Deluxe","290,00 € netto je Stück"],["3 tragbare Navigationsgeräte Mini","260,00 € netto je Stück"],["Rabatt (10 %)","107,00 €"],["Warenwert nach Rabatt","963,00 € netto"],["Umsatzsteuer (19 %)","182,97 €"],["Rechnungsbetrag","1.145,97 €"]]]]},{"id":"19-5","group":19,"no":5,"page":174,"title":"Motoröl","desc":"Quittung über drei Kanister Motoröl buchen.","sections":[],"hints":["Überlege, ob Motoröl verbraucht oder dauerhaft als Anlagegut genutzt wird.","Suche das Aufwandskonto für Betriebsstoffe.","Übernimm die ausgewiesene Steuer und buche den bar gezahlten Bruttobetrag."],"way":["Motoröl ist ein Betriebsstoff. Gebucht werden 75,00 € Aufwand und 14,25 € Vorsteuer gegen die Kasse."],"bookings":[["Barzahlung",[["6030 AWB",7500],["2600 VORST",1425]],[["2880 KA",8925]]]],"note":null,"receipts":[["Quittung · Kraftstoffhandel",[["Ware","3 Kanister Motoröl 5W-30"],["Nettobetrag","75,00 €"],["Umsatzsteuer (19 %)","14,25 €"],["Bar bezahlt","89,25 €"]]]]},{"id":"20-1","group":20,"no":1,"page":175,"title":"Büroklammern","desc":"Verbrauchsmaterial bar einkaufen.","sections":[["","Büroklammern werden für 14,28 € brutto bar gekauft."]],"hints":["Überlege, auf welches Aufwandskonto Büromaterial gehört.","Rechne den Bruttobetrag mit dem Faktor 1,19 in netto um.","Die Vorsteuer ist die Differenz zwischen Brutto und Netto. Welches Konto nimmt bei Barzahlung ab?"],"way":["14,28 € ÷ 1,19 = 12,00 € netto. Vorsteuer: 2,28 €."],"bookings":[["Barzahlung",[["6800 BMK",1200],["2600 VORST",228]],[["2880 KA",1428]]]],"note":null,"receipts":null},{"id":"20-2","group":20,"no":2,"page":175,"title":"Zwei Tablets mit Rabatt","desc":"Rabatt abziehen und Nettostückpreis prüfen.","sections":[["","Zwei Tablets werden auf Ziel gekauft. Der Nettopreis beträgt je 810,00 €, darauf werden 10 % Rabatt gewährt."]],"hints":["Der Rabatt vermindert die Anschaffungskosten vor der Einordnung.","Multipliziere 810,00 € mit 0,90. Prüfe den verminderten Preis eines Tablets.","Buche beide Geräte zusammen netto auf das richtige Konto und ergänze die Vorsteuer. Bei einem Zielkauf entsteht eine Verbindlichkeit."],"way":["810,00 € × 0,90 = 729,00 € je Tablet. Zusammen: 1.458,00 € netto und 277,02 € Vorsteuer."],"bookings":[["Zielkauf",[["0890 GWG",145800],["2600 VORST",27702]],[["4400 VE",173502]]]],"note":null,"receipts":null},{"id":"20-3","group":20,"no":3,"page":175,"title":"Kopiergerät und Installation","desc":"Anschaffungskosten bestimmen und zwei Vorgänge buchen.","sections":[["","Das Kopiergerät kostet laut Eingangsrechnung 770,00 € netto. Die Installation kostet separat 59,50 € brutto und wird bar bezahlt."]],"hints":["Berücksichtige die Installation bei der Einordnung des Kopiergeräts.","Rechne die Installation netto aus und addiere den Betrag zum Nettopreis des Geräts.","Du brauchst zwei Buchungssätze auf demselben Anlagekonto. Die Gegenkonten unterscheiden sich wegen der Zahlungsart."],"way":["59,50 € ÷ 1,19 = 50,00 € Installation netto. Anschaffungskosten: 770,00 € + 50,00 € = 820,00 €.","Vorsteuer: 146,30 € auf das Gerät und 9,50 € auf die Installation."],"bookings":[["Eingangsrechnung",[["0860 BM",77000],["2600 VORST",14630]],[["4400 VE",91630]]],["Installation",[["0860 BM",5000],["2600 VORST",950]],[["2880 KA",5950]]]],"note":null,"receipts":null},{"id":"20-4","group":20,"no":4,"page":175,"title":"Toner für das Kopiergerät","desc":"Toner als Verbrauchsmaterial einordnen.","sections":[["","Eine Quittung belegt den Barkauf von Toner für 298,69 € brutto."]],"hints":["Entscheide, ob Toner ein eigenständiges Anlagegut ist oder verbraucht wird.","Teile den Bruttobetrag durch 1,19.","Buche das Büromaterial und die Vorsteuer getrennt. Die Quittung steht für eine Barzahlung."],"way":["298,69 € ÷ 1,19 = 251,00 € netto. Vorsteuer: 47,69 €. Toner wird als Büromaterial erfasst."],"bookings":[["Barzahlung",[["6800 BMK",25100],["2600 VORST",4769]],[["2880 KA",29869]]]],"note":null,"receipts":null},{"id":"20-5","group":20,"no":5,"page":175,"title":"Zwölf Konferenzstühle","desc":"Bruttogesamtpreis und Nettostückpreis unterscheiden.","sections":[["","Für zwölf Konferenzstühle auf Ziel lautet der Rechnungsbetrag auf 3.927,00 € brutto."]],"hints":["Für die GWG-Einordnung ist der Nettostückpreis maßgeblich.","Rechne zunächst die Nettosumme aus und teile sie anschließend durch zwölf.","Buche die Nettosumme und die Vorsteuer im Soll. Im Haben steht der noch offene Rechnungsbetrag."],"way":["3.927,00 € ÷ 1,19 = 3.300,00 € netto, durch zwölf ergibt das 275,00 € je Stuhl. Vorsteuer: 627,00 €."],"bookings":[["Zielkauf",[["0890 GWG",330000],["2600 VORST",62700]],[["4400 VE",392700]]]],"note":null,"receipts":null},{"id":"20-6","group":20,"no":6,"page":175,"title":"Tankquittung für den Lkw","desc":"Kraftstoff als Betriebsstoff buchen.","sections":[["","Die Quittung für das Betanken des Betriebs-Lkw lautet auf 145,18 € brutto."]],"hints":["Entscheide, ob die Tankfüllung zu den Anschaffungskosten gehört oder laufender Verbrauch ist.","Rechne den Nettobetrag und die Vorsteuer aus.","Nutze das Aufwandskonto für Betriebsstoffe. Der Quittungsbetrag wird gegen Kasse gebucht."],"way":["145,18 € ÷ 1,19 = 122,00 € netto. Vorsteuer: 23,18 €. Die Tankfüllung ist laufender Aufwand."],"bookings":[["Barzahlung",[["6030 AWB",12200],["2600 VORST",2318]],[["2880 KA",14518]]]],"note":null,"receipts":null},{"id":"20-7","group":20,"no":7,"page":176,"title":"Papierschneidemaschine mit Fracht","desc":"Nettoanschaffungskosten eines Kleinguts bestimmen.","sections":[["","Eine Papierschneidemaschine fürs Büro wird auf Ziel gekauft. Der Nettopreis beträgt 125,00 €, die Fracht 12,50 € netto."]],"hints":["Die Fracht erhöht die Anschaffungskosten.","Addiere die beiden Nettobeträge und vergleiche die Summe mit der Kleingutgrenze.","Berechne die Vorsteuer auf den gesamten Nettobetrag. Der Bruttobetrag bleibt offen."],"way":["125,00 € + 12,50 € = 137,50 € netto. Vorsteuer: 137,50 € × 19 % = gerundet 26,13 €. Brutto: 163,63 €."],"bookings":[["Zielkauf",[["6800 BMK",13750],["2600 VORST",2613]],[["4400 VE",16363]]]],"note":null,"receipts":null},{"id":"20-8","group":20,"no":8,"page":176,"title":"Fünf USB-Sticks","desc":"Nettostückpreis ermitteln und Barkauf buchen.","sections":[["","Fünf USB-Sticks werden für insgesamt 77,35 € brutto bar gekauft."]],"hints":["Die Angabe enthält den Gesamtbetrag einschließlich Umsatzsteuer.","Rechne die Nettosumme aus und teile sie durch fünf.","Ordne die USB-Sticks wie im Buch als Kleingüter ein. Buche den Bruttobetrag gegen Kasse."],"way":["77,35 € ÷ 1,19 = 65,00 € netto. Je Stick: 13,00 €. Vorsteuer: 12,35 €."],"bookings":[["Barzahlung",[["6800 BMK",6500],["2600 VORST",1235]],[["2880 KA",7735]]]],"note":null,"receipts":null},{"id":"20-9","group":20,"no":9,"page":176,"title":"Ersatzmonitor","desc":"Selbstständige Nutzbarkeit eines Monitors prüfen.","sections":[["","Ein Computermonitor wird ersetzt. Die Eingangsrechnung für den neuen Monitor beträgt 815,15 € brutto."]],"hints":["Prüfe neben der Wertgrenze auch die selbstständige Nutzbarkeit.","Der Monitor ist als Teil der Computeranlage einzuordnen. Rechne Brutto in Netto um.","Wähle das Konto für Büromaschinen und berücksichtige die noch offene Eingangsrechnung."],"way":["815,15 € ÷ 1,19 = 685,00 € netto. Vorsteuer: 130,15 €. Der Monitor ist hier nicht selbstständig nutzbar."],"bookings":[["Eingangsrechnung",[["0860 BM",68500],["2600 VORST",13015]],[["4400 VE",81515]]]],"note":null,"receipts":null}]</script>
+<script id="belegdaten" type="application/json">{"19-1":{"style":"bon","kind":"Kassenzettel","company":"Büro-Center Boris e. K.","address":"Bayerstr. 281 · 80331 München","reference":"Bon 354/657","date":"03.03.20.. · 12:18:43","columns":["Artikel","Brutto"],"items":[["1 × Kopierpapier „Recycling 2050“","17,85 €"],["1 × Regalsystem „Ordnung-4-ever“","464,10 €"]],"itemNotes":["15,00 € netto · 2,85 € USt (19 %)","390,00 € netto · 74,10 € USt (19 %)"],"totals":[["Gesamtbetrag","481,95 €"]],"payment":"Barzahlung","paymentDetails":[["Gegeben","500,00 €"],["Rückgeld","18,05 €"]],"footer":"Wir bringen Ihr Büro in Ordnung!"},"19-2":{"style":"terminal","kind":"Kartenzahlung","company":"COMPU-expert GmbH","address":"Manchingerstr. 35 · 85049 Ingolstadt","reference":"Beleg 123/246","date":"28.04.20.. · 15:40:12","columns":["Artikel","Brutto"],"items":[["2 × Tablet-PC „Appelt CX35“","2.856,00 €"]],"itemNotes":["1.428,00 € brutto pro Stück"],"totals":[["Nettosumme","2.400,00 €"],["Umsatzsteuer (19 %)","456,00 €"],["Gesamtbetrag","2.856,00 €"]],"payment":"Girocard-Lastschrift · Karte akzeptiert"},"19-3":{"style":"invoice","kind":"Rechnung","company":"Willis Büromarkt GmbH","address":"Alpenring 29 · 85007 Manching","recipient":true,"reference":"Rechnungsnr. 654/..","date":"Rechnungs- und Lieferdatum 15.06.20..","columns":["Artikel","Menge","Gesamt netto"],"items":[["HD-WLAN-Beamer „Bright Light LU 65“","1","1.675,00 €"],["Konferenztisch „Oval“","1","750,00 €"],["Flipchartständer „Presenter“","1","190,00 €"]],"totals":[["Warenwert netto","2.615,00 €"],["Umsatzsteuer (19 %)","496,85 €"],["Rechnungsbetrag","3.111,85 €"]],"footer":"Zahlbar bis 15. Juli 20.."},"19-4":{"style":"navigation","kind":"Rechnung","company":"TimTom GmbH","address":"Industriestraße 3 · 80469 München","recipient":true,"reference":"Rechnungsnr. 410/..","date":"Rechnungs- und Lieferdatum 19.10.20..","columns":["Tragbares Navigationsgerät","Menge","Einzelpreis netto","Gesamt netto"],"items":[["Deluxe XTrail","1","290,00 €","290,00 €"],["Mini 2050","3","260,00 €","780,00 €"]],"totals":[["Zwischensumme","1.070,00 €"],["Abzüglich 10 % Rabatt","107,00 €"],["Warenwert netto","963,00 €"],["Umsatzsteuer (19 %)","182,97 €"],["Rechnungsbetrag","1.145,97 €"]],"footer":"Zahlbar bis 9. November 20.."},"19-5":{"style":"quittung","kind":"Quittung","company":"Kraftstoffhandel Ali Ibrahim e. K.","address":"85049 Ingolstadt","reference":"Quittungsnr. 0005887","date":"17.11.20..","description":"Von Andrea Kästner Mountainbikes e. Kfr. für 3 Kanister Motoröl 5W-30 erhalten.","totals":[["Nettobetrag","75,00 €"],["Umsatzsteuer (19 %)","14,25 €"],["Gesamtbetrag","89,25 €"]],"payment":"Barzahlung","footer":"Ali Ibrahim · Zahlungsempfänger"}}</script>
 <script>
 "use strict";
 const tasks = JSON.parse(document.getElementById("buchdaten").textContent);
+const receipts = JSON.parse(document.getElementById("belegdaten").textContent);
 const app = document.getElementById("app");
 const currency = new Intl.NumberFormat("de-DE", {style:"currency", currency:"EUR"});
 const groups = {
@@ -94,31 +163,63 @@ function booking(title, debit, credit) {
   section.append(sides);
   return section;
 }
+function receiptItems({columns, items, itemNotes}) {
+  const table = element("table", null, "receipt-items");
+  const header = table.createTHead().insertRow();
+  for (const column of columns) {
+    const cell = element("th", column);
+    cell.scope = "col";
+    header.append(cell);
+  }
+  const body = table.createTBody();
+  items.forEach((item, index) => {
+    const row = body.insertRow();
+    for (const value of item) row.append(element("td", value));
+    if (itemNotes?.[index]) row.cells[0].append(element("small", itemNotes[index]));
+  });
+  return table;
+}
+function renderReceipt(data) {
+  const paper = element("article", null, "receipt receipt--" + data.style);
+  paper.setAttribute("aria-label", data.kind + " von " + data.company);
+  paper.append(
+    element("p", data.kind, "receipt-kind"),
+    element("h3", data.company),
+    element("p", data.address, "receipt-address")
+  );
+  if (data.recipient) {
+    const recipient = element("address", null, "receipt-recipient");
+    recipient.append("Andrea Kästner Mountainbikes e. Kfr.", element("br"),
+      "Stamsrieder Weg 50", element("br"), "85049 Ingolstadt");
+    paper.append(recipient);
+  }
+  const meta = element("div", null, "receipt-meta");
+  meta.append(element("strong", data.reference), element("span", data.date));
+  paper.append(meta);
+  if (data.items) paper.append(receiptItems(data));
+  if (data.description) paper.append(element("p", data.description));
+  const totals = definitions(data.totals, "Summen");
+  totals.className = "receipt-totals";
+  paper.append(totals);
+  if (data.payment) paper.append(element("p", data.payment, "receipt-payment"));
+  if (data.paymentDetails) paper.append(definitions(data.paymentDetails, "Barzahlung"));
+  if (data.footer) paper.append(element("p", data.footer, "receipt-footer"));
+  return paper;
+}
 function taskPage(task) {
   document.title = "3/" + task.group + " · " + number(task) + " · " + task.title;
   app.append(element("p", "Aufgabe 3/" + task.group + " · " + number(task) + " · Buchseite " + task.page, "reference"),
     element("h1", task.title));
   const facts = element("section", null, "panel case");
-  facts.append(element("h2", task.receipts ? "Beleg" : "Geschäftsfall"));
+  const receipt = receipts[task.id];
+  facts.append(element("h2", receipt ? "Beleg" : "Geschäftsfall"));
   for (const [nr, description] of task.sections) {
     const p = element("p");
     if (nr) p.append(element("strong", nr + " "));
     p.append(description);
     facts.append(p);
   }
-  for (const [label, rows] of task.receipts ?? []) {
-    const receipt = element("section", null, "receipt");
-    const path = "belege/beleg-" + task.no + ".jpg";
-    const photo = element("img");
-    photo.src = path;
-    photo.alt = "Originalbeleg " + task.no + " · " + label;
-    const fullSize = link("Originalbeleg in voller Größe öffnen", path, "receipt-image");
-    fullSize.target = "_blank";
-    fullSize.rel = "noopener";
-    fullSize.prepend(photo);
-    receipt.append(element("h3", label), fullSize, disclosure("Belegdaten als Text", definitions(rows, label)));
-    facts.append(receipt);
-  }
+  if (receipt) facts.append(renderReceipt(receipt));
   facts.append(element("p", task.bookings.length === 1 ? "Bilde den Buchungssatz." : "Bilde die Buchungssätze.", "auftrag"));
   const hints = element("section", null, "panel");
   hints.append(element("h2", "Hinweise"), element("p", "Öffne bei Bedarf einen Hinweis. Vergleiche danach deine eigene Lösung.", "intro"));
