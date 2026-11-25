@@ -9,6 +9,7 @@
 main{max-width:980px;margin:auto;padding:28px 20px 48px}h1,h2,h3,p{margin:0}h1,h2,h3{color:var(--ink);line-height:1.23}h1{font-size:clamp(1.75rem,5vw,2.85rem);letter-spacing:-.035em}h2{font-size:1.2rem}h3{font-size:1.05rem}.intro{margin:11px 0 23px;color:#475c54}.reference{font-size:.9rem;font-weight:700;color:var(--accent);margin-bottom:7px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:clamp(15px,3.5vw,26px);margin-top:19px}.group ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));list-style:none;gap:8px;margin:14px 0 0;padding:0}.group a{color:var(--ink);display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;text-decoration:none;height:100%}.group a:hover,.group a:focus-visible{background:var(--tint)}.group small{display:block;color:#486155;margin-bottom:3px}.group strong{display:block}
 dl{margin:14px 0 0;padding:0}.entry{display:grid;grid-template-columns:minmax(32%,1fr) minmax(35%,1fr);gap:9px;align-items:start;padding:7px 0;border-top:1px solid #dbe4da}.entry dt{font-weight:650}.entry dd{margin:0;text-align:right}.receipt{margin-top:14px;padding:14px;background:#f3f6f0;border-radius:10px;border:1px solid #d4e1d7}.case p{margin-top:9px}.case .auftrag{margin-top:12px;font-weight:750}
 details{margin-top:9px;border:1px solid var(--line);border-radius:10px;background:#fcfdf9}summary{padding:11px 13px;cursor:pointer;color:var(--ink);font-weight:750}summary:focus-visible,a:focus-visible{outline:3px solid #246b54;outline-offset:3px}details[open] summary{border-bottom:1px solid var(--line);background:var(--tint);border-radius:9px 9px 0 0}.disclosure{padding:12px 14px}.solution{border-color:#98b5a8}.solution summary{background:#deece2;border-radius:9px}.solution .explain+.explain{margin-top:6px}.solution section{margin-top:15px}.booking{margin-top:8px;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:center}.booking dl{margin:0;border-radius:9px;background:#eff4ed;border:1px solid #d4e1d6;padding:8px}.booking dl:last-child{background:#f6eee8;border-color:#e5d6cb}.booking .entry{font-size:.93rem}.booking .entry:first-of-type{border-top:0}.booking dt,.booking dd{overflow-wrap:anywhere}.booking dd{white-space:nowrap}.booking-caption{font-weight:750;margin-bottom:3px}.an{font-weight:700}.solutions-note{background:#f7efd8;color:#504424;border-radius:9px;padding:10px;margin-top:15px}.back{display:inline-block;color:var(--ink);padding:13px 0 6px}.context-note{margin-top:10px;font-size:.86rem;color:#53685d}
+.receipt-image{display:block;width:fit-content;margin:12px auto 0;text-align:center;color:var(--accent)}.receipt-image img{display:block;max-width:100%;height:auto;margin:auto auto 6px;border-radius:4px}
 @media(max-width:520px){main{padding-inline:12px}.booking{gap:5px}.booking .entry{display:block}.booking dd{text-align:left}.entry{gap:4px}}
 </style>
 <header class="mast"><a href="./">BwR · Aufgaben mit Selbstkontrolle</a></header>
@@ -107,10 +108,17 @@ function taskPage(task) {
   }
   for (const [label, rows] of task.receipts ?? []) {
     const receipt = element("section", null, "receipt");
-    receipt.append(element("h3", label), definitions(rows, label));
+    const path = "belege/beleg-" + task.no + ".jpg";
+    const photo = element("img");
+    photo.src = path;
+    photo.alt = "Originalbeleg " + task.no + " · " + label;
+    const fullSize = link("Originalbeleg in voller Größe öffnen", path, "receipt-image");
+    fullSize.target = "_blank";
+    fullSize.rel = "noopener";
+    fullSize.prepend(photo);
+    receipt.append(element("h3", label), fullSize, disclosure("Belegdaten als Text", definitions(rows, label)));
     facts.append(receipt);
   }
-  if (task.receipts) facts.append(element("p", "Für die Übung aufbereitete Belegangaben.", "context-note"));
   facts.append(element("p", task.bookings.length === 1 ? "Bilde den Buchungssatz." : "Bilde die Buchungssätze.", "auftrag"));
   const hints = element("section", null, "panel");
   hints.append(element("h2", "Hinweise"), element("p", "Öffne bei Bedarf einen Hinweis. Vergleiche danach deine eigene Lösung.", "intro"));
